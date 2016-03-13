@@ -5,6 +5,9 @@
 #include <algorithm>//swap()
 using namespace std;
 
+/*
+ * Data structure that add(num), remove(num), randomRemove() all are in O(1)
+ * */
 class ConstAccess {
 public:
     void add(int num) {
