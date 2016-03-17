@@ -1,3 +1,5 @@
+//271. Encode and Decode Strings
+//This alg is come from "count and say", it is right, but not very efficient
 #include <iostream>
 #include <vector>
 using namespace std;
