@@ -17,6 +17,10 @@ struct Interval {
  * scan the begin time, if the current begin time smaller than current end time, then count++, no meeting room can be
  * released
  * if the begin time > current end time, then the meeting can be released for current begin meeting,
+ *
+ * I think the alg can be simpily clarified as that,
+ * when a meeting begins, assign a meeting for it, otherwise its begintime < current endtime, then the meeting of the
+ * end meeting can be released for this new meeting, no meeting room needed to be assigned
  * */
 class Solution {
     public:
