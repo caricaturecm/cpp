@@ -50,8 +50,8 @@ private:
         }
         visited[i][j] = true;
         int directions[][2] = {{0, -1}, {-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {1, 1}, {1, 0}, {1, -1}};
-        int row = islands.size();
-        curIsland.push_back(i * row + j);
+        int col = islands[0].size() + 1;//only the consecutive number maybe confused. break the consecutive, add 1
+        curIsland.push_back(i * col + j);
         for (auto dir : directions) {
             int nx = i + dir[0];
             int ny = j + dir[1];
@@ -62,7 +62,7 @@ private:
 
 int main() {
     vector<vector<int> > islands;
-    int row0[] = {1, 0, 1, 0};
+    /*int row0[] = {1, 0, 1, 0};
     int row1[] = {0, 1, 0, 0};
     int row2[] = {0, 0, 0, 0};
     int row3[] = {1, 0, 1, 0};
@@ -71,7 +71,16 @@ int main() {
     islands.push_back(vector<int>(row1, row1 + 4));
     islands.push_back(vector<int>(row2, row2 + 4));
     islands.push_back(vector<int>(row3, row3 + 4));
-    islands.push_back(vector<int>(row4, row4 + 4));
+    islands.push_back(vector<int>(row4, row4 + 4));*/
+
+    int row0[] = {0, 1, 1};
+    int row1[] = {1, 0, 0};
+    int row2[] = {0, 0, 0};
+    int row3[] = {1, 1, 1};
+    islands.push_back(vector<int>(row0, row0 + 3));
+    islands.push_back(vector<int>(row1, row1 + 3));
+    islands.push_back(vector<int>(row2, row2 + 3));
+    islands.push_back(vector<int>(row3, row3 + 3));
 
     Island island;
     int count = island.numberIslands(islands);
