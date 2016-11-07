@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int getDistance(string word, string target) {
+    if (word.empty()) {
+        return target.length();
+    } else if (target.empty()) {
+        return word.empty();
+    }
+
+    int row = word.length(), col = target.length();
+    vector<int> preRow(col + 1, 0);
+    for (int i = 0; i <= col; i++) {
+        preRow[i] = i;
+    }
+
+    for (int i = 0; i < row; i++) {
+        vector<int> curRow(col + 1, 0);
+        curRow[0] = i + 1;
+        for (int j = 1; j <= col; j++) {
+            if (word[i] == target[j - 1]) {
+                curRow[j] = preRow[j - 1];
+            } else {
+                curRow[j] = 1 + min(curRow[j - 1], min(preRow[j - 1], preRow[j]));
+            }
+        }
+        preRow = curRow;
+    }
+    return preRow[col];
+}
+
+vector<string> getKEditDistance(vector<string>& words, string& target, int k) {
+    int size = words.size();
+    int dis;
+    vector<string> ret;
+    for (int i = 0; i < size; i++) {
+        dis = getDistance(words[i], target);
+        if (dis <= k) {
+            ret.push_back(words[i]);
+        }
+    }
+    return ret;
+}
+
+int main() {
+    string wordslist[] = {"ab", "abcd", "abcde", "window", "win"};
+    vector<string> words(wordslist, wordslist + 5);
+    string target = "abc";
+    int k = 2;
+
+    vector<string> ret = getKEditDistance(words, target, k);
+    for (int i = 0; i < ret.size(); i++) {
+        cout<<ret[i]<<endl;
+    }
+}
